@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Deduct Amount</th>
+    <th>Date</th>
+    <th>Transaction Type</th>
+    <th>Transaction Note</th>
+  </tr>
+<% if @transaction.present? %>  
+  <% @transaction.each do |tans| %>  
+    <tr>
+      <td><%= tans.user.try(:username)%></td>
+      <td><%= tans.user.try(:email)%></td>
+      <td><%= tans.try(:amount)%></td>
+      <td><%= tans.try(:created_at).to_date%></td>
+      <td><%= tans.try(:transaction_type)%></td>
+      <td><%= tans.try(:transaction_note)%></td>
+    </tr>
+  <% end %>
+<% else %>
+  <td colspan="4">Not transaction present.</td>
+<% end %>
+
+</table>

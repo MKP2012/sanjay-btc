@@ -1,0 +1,25 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Wallet</th>
+    <th>Withdraw money</th>
+    <th>Transfer to another user</th>
+    <th>Transaction Reports</th>
+  </tr>
+  <tr>
+    <td><%= @user.try(:username)%></td>
+    <td><%= @user.try(:email)%></td>
+    <td><%= @user.try(:wallet)%></td>
+    <td><%= link_to('Withdraw money', user_withdraw_money_path(:id => @user.id)) %>    </td>
+    <td>
+      <% if @users.present? && @users > 1 %>
+        <%= link_to('Transfer to another user', user_transfer_to_another_user_path(:id => @user.id)) %>    
+      <%else%>
+        When other users is present
+      <%end %>
+      </td>
+
+    <td><%= link_to('Transaction Reports', transaction_reports_path(:id => @user.id)) %></td>
+  </tr>
+</table>
