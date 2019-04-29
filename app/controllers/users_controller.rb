@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   	def show
-  		@users||= User.where.not(id: params[:id])
+  		@users = User.where.not(id: current_user.id)
   		@user = User.find_by_id(current_user.id)
 	end
 
